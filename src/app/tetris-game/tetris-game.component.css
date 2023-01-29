@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+  font-size: 3em;
+  margin: 2vh 0vh 0vh 0vh;
+}
+
+.game-container {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+}
+
+#canvas-wrapper {
+  position: relative;
+  margin-right: 1vw;
+  border-radius: 3px;
+  border: 5px solid lightcyan;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#game-canvas {
+  min-width: 200px;
+  min-height: 350px;
+}
+
+#game-sidebar {
+  border: 5px solid lightcyan;
+  border-radius: 3px;
+  min-width: 100px;
+}
+
+#gameover-message {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: min(15vw, 15vh);
+  font-weight: bold;
+  text-shadow: 0.2rem 0.2rem black;
+  color: red; 
+}
+
+#main-menu {
+  position:fixed;
+  top: 0px;
+}

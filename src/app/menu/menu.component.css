@@ -1,0 +1,18 @@
+h1 {
+  text-align: center;
+  color: skyblue;
+}
+
+#main-menu {
+  position: absolute;
+  width: 100vw;
+  height:100vh;
+  background-color: #222;
+}
+
+#title-canvas {
+  display: block;
+  width: 90%;
+  margin-left: 5vw;
+  margin-top: 5vh;
+}

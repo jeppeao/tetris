@@ -1,0 +1,19 @@
+<div class="game-container">
+  <div id="canvas-wrapper">
+    <div *ngIf="game.gameOver === true" id='gameover-message'>GAME OVER</div>
+    <canvas #board id="game-canvas"></canvas>
+  </div>
+  <app-sidebar #sidebar
+    [linesCleared]="linesCleared"
+    [score]="score"
+    [level]="level"
+    [nextPiece]="nextPiece"
+    [blocksize]= "blocksize"
+    id = "game-sidebar"
+    [style.width] = "getNextCanvasWidth()"
+    [onMenuClick]="toggleMenu.bind(this)"
+  ></app-sidebar>
+</div>
+<div *ngIf="menuOn === true" id='main-menu'>
+  <app-menu></app-menu>
+</div>
