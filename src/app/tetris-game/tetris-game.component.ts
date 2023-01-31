@@ -1,14 +1,15 @@
 import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { tetrisGame, COLS, ROWS, Move, iPiece } from '../model';
-import { AfterViewInit, AfterContentInit } from '@angular/core';
+import { COLS, ROWS, Move, iPiece } from '../model';
+import { AfterContentInit } from '@angular/core';
 import { DrawService } from '../draw.service';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-tetris-game',
   templateUrl: './tetris-game.component.html',
   styleUrls: ['./tetris-game.component.css']
 })
-export class TetrisGameComponent implements AfterContentInit, AfterViewInit{
+export class TetrisGameComponent implements AfterContentInit {
   @ViewChild('board', { static: true }) canvas: 
     ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
   
@@ -16,7 +17,6 @@ export class TetrisGameComponent implements AfterContentInit, AfterViewInit{
     ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
    
   ctx: CanvasRenderingContext2D | null = {} as CanvasRenderingContext2D;
-  game: tetrisGame = {} as tetrisGame;
   blocksize: number = 30;
   requestID: number = 0;
   time = {prev: 0, interval: 1000};
@@ -46,19 +46,15 @@ export class TetrisGameComponent implements AfterContentInit, AfterViewInit{
       }
     }
   }
-  constructor(private drawService: DrawService) {}
+  constructor(private drawService: DrawService, public game: GameService) {}
 
   ngAfterContentInit(): void {
-    this.game = new tetrisGame();
     this.initGame();
     this.game.resetBoard();
   }
  
   getNextCanvasWidth(): string {
     return (this.blocksize * 4 + 10).toString() + "px";
-  }
-
-  ngAfterViewInit(): void {
   }
 
   initGame() {

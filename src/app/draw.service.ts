@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { iPiece, iColor, tetrisGame, COLORS } from './model';
+import { GameService } from './game.service';
+import { iPiece, iColor, COLORS} from './model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DrawService {
 
-  constructor() { }
+
+  constructor(private game: GameService) { }
 
   clear(ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -59,7 +61,7 @@ export class DrawService {
     });
   }
 
-  drawGame(game: tetrisGame, ctx: CanvasRenderingContext2D, blocksize: number) {
+  drawGame(game: GameService, ctx: CanvasRenderingContext2D, blocksize: number) {
     this.clear(ctx);
     this.drawBoard(game.board, blocksize, ctx);
     this.drawPiece(game.shadowPiece, blocksize, ctx);
