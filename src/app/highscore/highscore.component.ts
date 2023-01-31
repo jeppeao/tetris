@@ -1,5 +1,6 @@
-import { Component, Input, AfterViewInit, HostListener, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, Input, HostListener, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
 import { DrawService } from '../draw.service';
+import { HighscoreService } from '../highscore.service'
 
 const T = [
   [1, 1, 1, 1, 1],
@@ -94,7 +95,7 @@ const GAP = [
   templateUrl: './highscore.component.html',
   styleUrls: ['./highscore.component.css']
 })
-export class HighscoreComponent implements AfterViewInit, AfterContentInit {
+export class HighscoreComponent implements AfterContentInit {
 
   //title = [T, GAP, E, GAP, T2, GAP, R, GAP, I, GAP, S];
   title = [H, I, G, H, S, C, O, R, E].map(ltr => [ltr, GAP]).flat();
@@ -110,7 +111,7 @@ export class HighscoreComponent implements AfterViewInit, AfterContentInit {
   @Input() onResize: () => void = () => {};
 
 
-  constructor(private drawService: DrawService) {}
+  constructor(private drawService: DrawService, public highscore: HighscoreService) {}
 
   constructTitleBoard(): number[][] {
     let tb: number[][] = [];
@@ -127,16 +128,11 @@ export class HighscoreComponent implements AfterViewInit, AfterContentInit {
   onResizeEvent(event: Event) {
      this.updateCanvasSize();
      this.onResize();
-     console.log(this.mainMenu.nativeElement.clientWidth);
   }
 
   ngAfterContentInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.updateCanvasSize();
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.mainMenu.nativeElement.clientWidth);
   }
 
   updateCanvasSize() {
