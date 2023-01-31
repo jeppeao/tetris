@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { COLS, ROWS, Move, iPiece } from '../model';
+import { COLS, ROWS, Move, iPiece } from '../constants';
 import { AfterContentInit } from '@angular/core';
 import { DrawService } from '../draw.service';
 import { GameService } from '../game.service';
@@ -13,9 +13,6 @@ export class TetrisGameComponent implements AfterContentInit {
   @ViewChild('board', { static: true }) canvas: 
     ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
   
-  @ViewChild('sidebar') sidebar: 
-    ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
-   
   ctx: CanvasRenderingContext2D | null = {} as CanvasRenderingContext2D;
   blocksize: number = 30;
   requestID: number = 0;
@@ -115,5 +112,13 @@ export class TetrisGameComponent implements AfterContentInit {
 
   togglePaused(): void {
     this.paused = !this.paused;
+  }
+
+  newGame(): void {
+    this.game.newGame();
+    this.updateGameInfo();
+    if (this.ctx) {
+      this.drawService.drawGame(this.game, this.ctx, this.blocksize)
+    }
   }
 }

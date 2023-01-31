@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, HostListener, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, Input, AfterViewInit, HostListener, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
 import { DrawService } from '../draw.service';
 
 const T = [
@@ -10,19 +10,19 @@ const T = [
 ];
 
 const E = [
-  [2, 2, 2, 2],
-  [2, 0, 0, 0],
-  [2, 2, 2, 2],
-  [2, 0, 0, 0],
-  [2, 2, 2, 2]
+  [3, 3, 3, 3],
+  [3, 0, 0, 0],
+  [3, 3, 3, 3],
+  [3, 0, 0, 0],
+  [3, 3, 3, 3]
 ];
 
 const R = [
-  [3, 3, 3, 0],
-  [3, 0, 0, 3],
-  [3, 3, 3, 0],
-  [3, 0, 0, 3],
-  [3, 0, 0, 3]
+  [2, 2, 2, 0],
+  [2, 0, 0, 2],
+  [2, 2, 2, 0],
+  [2, 0, 0, 2],
+  [2, 0, 0, 2]
 ];
 
 const I = [
@@ -49,6 +49,38 @@ const S = [
   [0, 0, 6, 0, 0]
 ];
 
+const H = [
+  [1, 0, 0, 0, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 0, 0, 0, 1]
+];
+
+const G = [
+  [3, 3, 3, 3, 0],
+  [3, 0, 0, 0, 0],
+  [3, 0, 3, 3, 3],
+  [3, 0, 0, 0, 3],
+  [3, 3, 3, 3, 3]
+];
+
+const O = [
+  [0, 6, 6, 6, 0],
+  [6, 0, 0, 0, 6],
+  [6, 0, 0, 0, 6],
+  [6, 0, 0, 0, 6],
+  [0, 6, 6, 6, 0]
+];
+
+const C = [
+  [0, 4, 4, 4, 0],
+  [4, 0, 0, 0, 4],
+  [4, 0, 0, 0, 0],
+  [4, 0, 0, 0, 4],
+  [0, 4, 4, 4, 0]
+]
+
 const GAP = [
   [0],
   [0],
@@ -58,14 +90,16 @@ const GAP = [
 ];
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-highscore',
+  templateUrl: './highscore.component.html',
+  styleUrls: ['./highscore.component.css']
 })
-export class MenuComponent implements AfterViewInit, AfterContentInit {
+export class HighscoreComponent implements AfterViewInit, AfterContentInit {
 
-  title = [T, GAP, E, GAP, T2, GAP, R, GAP, I, GAP, S];
+  //title = [T, GAP, E, GAP, T2, GAP, R, GAP, I, GAP, S];
+  title = [H, I, G, H, S, C, O, R, E].map(ltr => [ltr, GAP]).flat();
   
+
   @ViewChild('mainMenu') mainMenu: 
     ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>;
 
@@ -73,10 +107,10 @@ export class MenuComponent implements AfterViewInit, AfterContentInit {
     ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
     ctx: CanvasRenderingContext2D | null = {} as CanvasRenderingContext2D;
 
+  @Input() onResize: () => void = () => {};
 
-  constructor(private drawService: DrawService) {
-    this.constructTitleBoard();
-  }
+
+  constructor(private drawService: DrawService) {}
 
   constructTitleBoard(): number[][] {
     let tb: number[][] = [];
@@ -85,16 +119,15 @@ export class MenuComponent implements AfterViewInit, AfterContentInit {
       for (let i=0; i<this.title.length; i++) {
         tb[j] = tb[j].concat(this.title[i][j]);
       }
-   
     }
     return tb;
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResizeEvent(event: Event) {
      this.updateCanvasSize();
+     this.onResize();
      console.log(this.mainMenu.nativeElement.clientWidth);
-
   }
 
   ngAfterContentInit() {

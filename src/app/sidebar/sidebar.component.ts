@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SimpleChanges, OnChanges } from '@angular/core';
 import { DrawService } from '../draw.service';
-import { iPiece } from '../model';
+import { iPiece } from '../constants';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +14,8 @@ export class SidebarComponent implements AfterViewInit, OnChanges {
   @Input() level: number = 1;
   @Input() nextPiece: iPiece = {} as iPiece;
   @Input() blocksize: number = 0;
-  @Input() onMenuClick: () => void = () => {};
+  @Input() onHighscoreClick: () => void = () => {};
+  @Input() onNewGameClick: () => void = () => {};
 
   @ViewChild('nextPiece', { static: true }) canvasNext:
   ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;

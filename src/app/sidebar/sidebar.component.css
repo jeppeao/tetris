@@ -19,7 +19,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
+.button-text {
+  color: skyblue;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(90%);
+  margin-left: calc(5%);
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #label-next {
@@ -37,12 +53,14 @@
 .menu-button {
   color: skyblue;
   font-size: 1em;
-  padding: 0px;
+  padding: 0;
+  margin-top: 0.2em;
   background: linear-gradient( #555, #222);
   border-radius: 0.8em;
   border: 0.3vh solid lightcyan;
-  width: 80%;
+  width: 95%;
   height: 2em;
+  text-overflow: ellipsis;
 }
 
 .menu-button:hover {

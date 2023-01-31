@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { GameService } from './game.service';
 import { AppComponent } from './app.component';
 import { TetrisGameComponent } from './tetris-game/tetris-game.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MenuComponent } from './menu/menu.component';
+import { HighscoreComponent } from './highscore/highscore.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TetrisGameComponent,
     SidebarComponent,
-    MenuComponent
+    HighscoreComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

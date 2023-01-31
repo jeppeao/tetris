@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameService } from './game.service';
-import { iPiece, iColor, COLORS} from './model';
+import { iPiece, iColor, COLORS} from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +91,7 @@ export class DrawService {
       });
     });
   }
+
   getRGB(c: iColor): string {
     return `rgb(${c.r}, ${c.g}, ${c.b})`;
   }

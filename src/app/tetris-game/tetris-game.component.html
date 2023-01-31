@@ -2,6 +2,11 @@
   <div id="canvas-wrapper">
     <div *ngIf="game.gameOver === true" id='gameover-message'>GAME OVER</div>
     <canvas #board id="game-canvas"></canvas>
+    <div *ngIf="menuOn === true" id='main-menu'>
+      <app-highscore
+        [onResize]="calculateBlocksize.bind(this)"
+      ></app-highscore>
+    </div>
   </div>
   <app-sidebar #sidebar
     [linesCleared]="linesCleared"
@@ -11,9 +16,8 @@
     [blocksize]= "blocksize"
     id = "game-sidebar"
     [style.width] = "getNextCanvasWidth()"
-    [onMenuClick]="toggleMenu.bind(this)"
+    [onHighscoreClick]="toggleMenu.bind(this)"
+    [onNewGameClick]="newGame.bind(this)"
   ></app-sidebar>
 </div>
-<div *ngIf="menuOn === true" id='main-menu'>
-  <app-menu></app-menu>
-</div>
+

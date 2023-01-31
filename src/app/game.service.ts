@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { COLS, ROWS, iPiece, SHAPES, Move, SCORES, COLORS } from './model';
+import { COLS, ROWS, iPiece, SHAPES, Move, SCORES, COLORS } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,7 @@ export class GameService {
     this.score = 0;
     this.level = 1;
     this.linesCleared = 0;
+    this.gameOver = false;
   }
 
   validPos(p: iPiece, board: number[][]): boolean {
