@@ -99,8 +99,8 @@ export class HighscoreComponent implements AfterContentInit {
 
   //title = [T, GAP, E, GAP, T2, GAP, R, GAP, I, GAP, S];
   title = [H, I, G, H, S, C, O, R, E].map(ltr => [ltr, GAP]).flat();
+  highscores = this.highscore.getHighscores();
   
-
   @ViewChild('mainMenu') mainMenu: 
     ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>;
 

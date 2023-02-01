@@ -1,6 +1,9 @@
 <div class="game-container">
   <div id="canvas-wrapper">
-    <div *ngIf="game.gameOver === true" id='gameover-message'>GAME OVER</div>
+    <app-game-over *ngIf="game.gameOver === true"
+     id="game-over"
+     [score] = "score"
+    ></app-game-over>
     <canvas #board id="game-canvas"></canvas>
     <div *ngIf="menuOn === true" id='main-menu'>
       <app-highscore

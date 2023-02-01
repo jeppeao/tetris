@@ -196,7 +196,6 @@ export class GameService {
 
   loseGame() {
     this.gameOver = true;
-    console.log ("gameOver")
   }
 
 }

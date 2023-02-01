@@ -117,8 +117,11 @@ export class TetrisGameComponent implements AfterContentInit {
   newGame(): void {
     this.game.newGame();
     this.updateGameInfo();
-    if (this.ctx) {
+     if (this.ctx) {
       this.drawService.drawGame(this.game, this.ctx, this.blocksize)
+    }
+    if (this.menuOn === true) {
+      this.toggleMenu();
     }
   }
 }

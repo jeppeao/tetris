@@ -5,7 +5,7 @@ h1 {
 }
 
 .game-container {
-  margin-top: 2vh;
+  margin-top: 1vh;
   display: flex;
   justify-content: center;
 }
@@ -22,24 +22,20 @@ h1 {
 
 #game-canvas {
   min-width: 200px;
-  min-height: 350px;
+  min-height: 400px;
 }
 
 #game-sidebar {
   border: 5px solid lightcyan;
   border-radius: 3px;
-  min-width: 100px;
+  min-width: 80px;
 }
 
-#gameover-message {
+#game-over { 
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%);
-  font-size: min(15vw, 15vh);
-  font-weight: bold;
-  text-shadow: 0.2rem 0.2rem black;
-  color: red; 
+  width: 100%;
+  height: 100%;
+
 }
 
 #main-menu {

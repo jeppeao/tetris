@@ -5,16 +5,20 @@ import { AppComponent } from './app.component';
 import { TetrisGameComponent } from './tetris-game/tetris-game.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HighscoreComponent } from './highscore/highscore.component';
+import { GameOverComponent } from './game-over/game-over.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TetrisGameComponent,
     SidebarComponent,
-    HighscoreComponent
+    HighscoreComponent,
+    GameOverComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
   ],
   providers: [GameService],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 interface Score{
   player: string,
@@ -32,7 +33,7 @@ export class HighscoreService {
   }
 
   trimHighscores(scores: Score[]) {
-    return this.sortHighscores(scores).slice(0,8);
+    return this.sortHighscores(scores).slice(0,14);
   }
 
 }

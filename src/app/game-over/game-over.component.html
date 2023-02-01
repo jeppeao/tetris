@@ -1,0 +1,15 @@
+<div id="wrapper">
+  <div id="gameover-popup">
+    <div id='gameover-message'>GAME OVER</div>
+    <div #addHighscore id="add-highscore">
+        <div class="info-text">NEW HIGHSCORE</div>
+        <div class="info-text">
+            SCORE: <span class ='info-highlight'>{{ score }}</span>
+        </div>
+        <div id="input-line">
+        <input (keyup.enter)="onAdd()" id="input" [(ngModel)]="name" placeholder="name">
+        <button (mousedown)="onAdd()">ADD</button>
+        </div>
+    </div>
+  </div>
+</div>
