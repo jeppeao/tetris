@@ -1,28 +1,26 @@
 <div class="game-container">
+
   <div id="canvas-wrapper">
-    <app-game-over *ngIf="game.gameOver === true"
+    <app-game-over *ngIf="game.state === 'gameover'"
      id="game-over"
      [score] = "score"
     ></app-game-over>
     <canvas #board id="game-canvas"></canvas>
-    <div *ngIf="menuOn === true" id='main-menu'>
+    <div *ngIf="menuOn === true && game.isRunning() === false" id='main-menu'>
       <app-highscore
         [onResize]="calculateBlocksize.bind(this)"
       ></app-highscore>
     </div>
   </div>
+
   <app-sidebar #sidebar
-    [linesCleared]="linesCleared"
-    [score]="score"
-    [level]="level"
-    [started]="gameStarted"
-    [nextPiece]="nextPiece"
     [blocksize]= "blocksize"
     id = "game-sidebar"
     [style.width] = "getNextCanvasWidth()"
     [onHighscoreClick]="toggleMenu.bind(this)"
     [onNewGameClick]="newGame.bind(this)"
-    [onStartGameClick] = "startGame.bind(this)"
+    [onStartGameClick]="onStartGameClick.bind(this)"
   ></app-sidebar>
+
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnChanges, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { COLS, ROWS, Move, iPiece } from '../constants';
 import { AfterContentInit } from '@angular/core';
 import { DrawService } from '../draw.service';
@@ -87,7 +87,7 @@ export class TetrisGameComponent implements AfterContentInit {
 
   loop(now = 0) {
     const t = this.time.interval * this.game.TIMING_FACTOR ** this.game.level;
-    if(now  - this.time.prev > t && this.paused===false && this.gameStarted === true) {
+    if(now  - this.time.prev > t && this.game.state === 'running') {
       this.time.prev = now;
       this.game.advanceGame();
       this.updateGameInfo();
@@ -108,11 +108,9 @@ export class TetrisGameComponent implements AfterContentInit {
 
   toggleMenu(): void {
     this.menuOn = !this.menuOn;
-    this.paused = this.menuOn;
-  }
-
-  togglePaused(): void {
-    this.paused = !this.paused;
+    if (this.game.isPaused() !== this.menuOn) {
+      this.game.togglePaused();
+    }
   }
 
   newGame(): void {
@@ -126,7 +124,8 @@ export class TetrisGameComponent implements AfterContentInit {
     }
   }
 
-  startGame() {
-    this.gameStarted = true;
+  onStartGameClick() {
+    this.game.beginGame();
+    this.menuOn = false;
   }
 }

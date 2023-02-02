@@ -33,7 +33,7 @@ export class HighscoreService {
   }
 
   trimHighscores(scores: Score[]) {
-    return this.sortHighscores(scores).slice(0,14);
+    return this.sortHighscores(scores).slice(0,15);
   }
 
 }

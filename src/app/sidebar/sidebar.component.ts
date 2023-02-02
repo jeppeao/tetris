@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SimpleChanges, OnChanges } from '@angular/core';
 import { DrawService } from '../draw.service';
+import { GameService } from '../game.service';
 import { iPiece } from '../constants';
 
 @Component({
@@ -9,11 +10,7 @@ import { iPiece } from '../constants';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements AfterViewInit, OnChanges {
-  @Input() score: number = 0;
-  @Input() linesCleared: number = 0;
-  @Input() level: number = 1;
-  @Input() started: boolean = true;
-  @Input() nextPiece: iPiece = {} as iPiece;
+  nextPiece: iPiece = this.game.nextPiece;
   @Input() blocksize: number = 0;
   @Input() onStartGameClick: () => void = () => {};
   @Input() onHighscoreClick: () => void = () => {};
@@ -23,7 +20,7 @@ export class SidebarComponent implements AfterViewInit, OnChanges {
   ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
   ctxNext: CanvasRenderingContext2D | null = {} as CanvasRenderingContext2D;
 
-  constructor(private drawService: DrawService) {}
+  constructor(private drawService: DrawService, public game: GameService) {}
 
   ngAfterViewInit() {
     this.initSidebar();
@@ -46,4 +43,5 @@ export class SidebarComponent implements AfterViewInit, OnChanges {
       this.drawService.drawShape(this.nextPiece, this.blocksize-10, this.ctxNext);
     }
   }
+
 }

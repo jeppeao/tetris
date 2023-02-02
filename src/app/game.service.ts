@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { COLS, ROWS, iPiece, SHAPES, Move, SCORES, COLORS } from './constants';
 
+enum State {
+  ready = 'ready',
+  running = 'running',
+  paused = 'paused',
+  gameover = 'gameover'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +21,7 @@ export class GameService {
   linesCleared = 0;
   LINES_PER_LEVEL = 10;
   TIMING_FACTOR = 0.8;
-  gameOver = false;
+  state: State = State.ready;
 
   moves = {
     left: (p: iPiece) => this.translate(p, {x: -1, y: 0}),
@@ -27,6 +34,7 @@ export class GameService {
 
   constructor() {
     this.newGame();
+    this.state = State.ready;
   }
 
   randomPiece() {
@@ -40,7 +48,7 @@ export class GameService {
 
   resetBoard() {
     this.board = Array(ROWS).fill(0).map(row => Array(COLS).fill(0));
-  }
+  } 
 
   newGame() {
     this.resetBoard();
@@ -50,7 +58,7 @@ export class GameService {
     this.score = 0;
     this.level = 1;
     this.linesCleared = 0;
-    this.gameOver = false;
+    this.state = State.running;
   }
 
   validPos(p: iPiece, board: number[][]): boolean {
@@ -181,7 +189,7 @@ export class GameService {
   }
 
   advanceGame() {
-    if (this.gameOver) return;
+    if (this.state === State.gameover) return;
      
     if (this.hasPieceLanded()) {
       this.freezePiece();
@@ -195,7 +203,30 @@ export class GameService {
   }
 
   loseGame() {
-    this.gameOver = true;
+    this.state = State.gameover;
+  }
+
+  togglePaused() {
+    if (this.state === State.paused){
+      this.state = State.running;
+    }
+    else if (this.state === State.running) {
+      this.state = State.paused;
+    }
+  }
+
+  beginGame() {
+    if (this.state === State.ready) {
+      this.state = State.running;
+    }
+  }
+
+  isPaused() {
+    return this.state === State.paused;
+  }
+
+  isRunning() {
+    return this.state === State.running;
   }
 
 }

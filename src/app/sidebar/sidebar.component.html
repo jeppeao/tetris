@@ -1,15 +1,15 @@
 <div id="main-wrapper">
   <div class="info-wrapper">
     <p class="label">SCORE</p>
-    <p id="score">{{score || 0}}</p>
+    <p id="score">{{game.score || 0}}</p>
   </div>
   <div class="info-wrapper">
     <p class="label">LINES</p>
-    <p class="info"> {{linesCleared || 0}}</p>
+    <p class="info"> {{game.linesCleared || 0}}</p>
   </div>
   <div class="info-wrapper">
     <p class="label">LEVEL</p>
-    <p class="info"> {{level || 0}}</p>
+    <p class="info"> {{game.level || 0}}</p>
   </div>
   <div class="info-wrapper">
     <p id="label-next">NEXT </p>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="button-wrapper">
-    <ng-container *ngIf="this.started===false;then startGameButton; else newGameButton">
+    <ng-container *ngIf="game.state==='ready';then startGameButton; else newGameButton">
     </ng-container>
     <ng-template #startGameButton>
       <button class="menu-button" (mousedown)="onStartGameClick()">
