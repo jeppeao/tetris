@@ -5,11 +5,11 @@
   </div>
   <div class="info-wrapper">
     <p class="label">LINES</p>
-    <p class="info">  {{linesCleared || 0}}</p>
+    <p class="info"> {{linesCleared || 0}}</p>
   </div>
   <div class="info-wrapper">
     <p class="label">LEVEL</p>
-    <p class="info">  {{level || 0}}</p>
+    <p class="info"> {{level || 0}}</p>
   </div>
   <div class="info-wrapper">
     <p id="label-next">NEXT </p>
@@ -18,13 +18,23 @@
     </div>
   </div>
   <div class="button-wrapper">
-    <button class="menu-button" (mousedown) = "onNewGameClick()">
-      <div class ="button-text">NEW GAME</div>
-    </button>
-    <button class="menu-button" (mousedown) = "onHighscoreClick()">
-      <div class ="button-text">HIGHSCORE</div>
+    <ng-container *ngIf="this.started===false;then startGameButton; else newGameButton">
+    </ng-container>
+    <ng-template #startGameButton>
+      <button class="menu-button" (mousedown)="onStartGameClick()">
+        <div class="button-text">START</div>
+      </button>
+    </ng-template>
+    <ng-template #newGameButton>
+      <button class="menu-button" (mousedown)="onNewGameClick()">
+        <div class="button-text">NEW GAME</div>
+      </button>
+    </ng-template>
+
+    <button class="menu-button" (mousedown)="onHighscoreClick()">
+      <div class="button-text">HIGHSCORE</div>
     </button>
     <div>
-    
-  </div>
+
+    </div>
   </div>

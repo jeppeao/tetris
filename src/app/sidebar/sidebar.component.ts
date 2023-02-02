@@ -12,8 +12,10 @@ export class SidebarComponent implements AfterViewInit, OnChanges {
   @Input() score: number = 0;
   @Input() linesCleared: number = 0;
   @Input() level: number = 1;
+  @Input() started: boolean = true;
   @Input() nextPiece: iPiece = {} as iPiece;
   @Input() blocksize: number = 0;
+  @Input() onStartGameClick: () => void = () => {};
   @Input() onHighscoreClick: () => void = () => {};
   @Input() onNewGameClick: () => void = () => {};
 

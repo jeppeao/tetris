@@ -15,12 +15,14 @@
     [linesCleared]="linesCleared"
     [score]="score"
     [level]="level"
+    [started]="gameStarted"
     [nextPiece]="nextPiece"
     [blocksize]= "blocksize"
     id = "game-sidebar"
     [style.width] = "getNextCanvasWidth()"
     [onHighscoreClick]="toggleMenu.bind(this)"
     [onNewGameClick]="newGame.bind(this)"
+    [onStartGameClick] = "startGame.bind(this)"
   ></app-sidebar>
 </div>
 

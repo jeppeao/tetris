@@ -23,6 +23,7 @@ export class TetrisGameComponent implements AfterContentInit {
   nextPiece: iPiece = {} as iPiece;
   paused: boolean = false;
   menuOn: boolean = false;
+  gameStarted: boolean = false;
 
   controls: {[key: string]: Move } = {
     "ArrowUp": Move.rotateClockwise,
@@ -86,7 +87,7 @@ export class TetrisGameComponent implements AfterContentInit {
 
   loop(now = 0) {
     const t = this.time.interval * this.game.TIMING_FACTOR ** this.game.level;
-    if(now  - this.time.prev > t && this.paused===false) {
+    if(now  - this.time.prev > t && this.paused===false && this.gameStarted === true) {
       this.time.prev = now;
       this.game.advanceGame();
       this.updateGameInfo();
@@ -106,8 +107,8 @@ export class TetrisGameComponent implements AfterContentInit {
   }
 
   toggleMenu(): void {
-    this.togglePaused();
     this.menuOn = !this.menuOn;
+    this.paused = this.menuOn;
   }
 
   togglePaused(): void {
@@ -123,5 +124,9 @@ export class TetrisGameComponent implements AfterContentInit {
     if (this.menuOn === true) {
       this.toggleMenu();
     }
+  }
+
+  startGame() {
+    this.gameStarted = true;
   }
 }
