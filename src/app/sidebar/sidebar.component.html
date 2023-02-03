@@ -14,9 +14,14 @@
   <div class="info-wrapper">
     <p id="label-next">NEXT </p>
     <div id="canvas-wrapper">
-      <canvas #nextPiece id="next-canvas"></canvas>
+      <app-board-canvas
+        [blockSize]="blocksize"
+        [board]="game.nextPiece.shape"
+        [drawBackground]="false"
+      ></app-board-canvas>
     </div>
   </div>
+  
   <div class="button-wrapper">
     <ng-container *ngIf="game.state==='ready';then startGameButton; else newGameButton">
     </ng-container>
@@ -30,11 +35,7 @@
         <div class="button-text">NEW GAME</div>
       </button>
     </ng-template>
-
     <button class="menu-button" (mousedown)="onHighscoreClick()">
       <div class="button-text">HIGHSCORE</div>
     </button>
-    <div>
-
-    </div>
   </div>

@@ -80,3 +80,7 @@
   margin: 1vh;
   font-size: 2em;
 }
+
+app-board-canvas{
+  width: 200px;
+}

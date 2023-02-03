@@ -1,4 +1,4 @@
-import { Component, Input, HostListener, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, Input, HostListener} from '@angular/core';
 import { DrawService } from '../draw.service';
 import { HighscoreService } from '../highscore.service'
 
@@ -95,23 +95,17 @@ const GAP = [
   templateUrl: './highscore.component.html',
   styleUrls: ['./highscore.component.css']
 })
-export class HighscoreComponent implements AfterContentInit {
+export class HighscoreComponent {
 
   //title = [T, GAP, E, GAP, T2, GAP, R, GAP, I, GAP, S];
   title = [H, I, G, H, S, C, O, R, E].map(ltr => [ltr, GAP]).flat();
   highscores = this.highscore.getHighscores();
-  
-  @ViewChild('mainMenu') mainMenu: 
-    ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>;
-
-  @ViewChild('titleBoard', { static: true }) canvas: 
-    ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
-    ctx: CanvasRenderingContext2D | null = {} as CanvasRenderingContext2D;
-
+  blockSize = 0;
   @Input() onResize: () => void = () => {};
 
-
-  constructor(private drawService: DrawService, public highscore: HighscoreService) {}
+  constructor(private drawService: DrawService, public highscore: HighscoreService) {
+    this.updateBlockSize();
+  }
 
   constructTitleBoard(): number[][] {
     let tb: number[][] = [];
@@ -126,23 +120,11 @@ export class HighscoreComponent implements AfterContentInit {
 
   @HostListener('window:resize', ['$event'])
   onResizeEvent(event: Event) {
-     this.updateCanvasSize();
+     this.updateBlockSize();
      this.onResize();
   }
 
-  ngAfterContentInit() {
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.updateCanvasSize();
-  }
-
-  updateCanvasSize() {
-    const bs = window.innerWidth / this.constructTitleBoard()[0].length;
-    if (this.ctx) {
-      this.ctx.canvas.width = bs * this.constructTitleBoard()[0].length;
-      this.ctx.canvas.height = bs * this.constructTitleBoard().length;
-      this.drawService.drawBoard(
-        this.constructTitleBoard(), bs, this.ctx, false
-      );
-    }
+  updateBlockSize() {
+    this.blockSize = window.innerWidth / this.constructTitleBoard()[0].length;
   }
 }

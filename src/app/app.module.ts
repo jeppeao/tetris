@@ -7,6 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HighscoreComponent } from './highscore/highscore.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { FormsModule } from '@angular/forms';
+import { BoardCanvasComponent } from './board-canvas/board-canvas.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     TetrisGameComponent,
     SidebarComponent,
     HighscoreComponent,
-    GameOverComponent
+    GameOverComponent,
+    BoardCanvasComponent
   ],
   imports: [
     BrowserModule,

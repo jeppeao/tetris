@@ -21,9 +21,8 @@ export class TetrisGameComponent implements AfterContentInit {
   linesCleared = this.game.linesCleared || 0;
   level = this.game.level || 1;
   nextPiece: iPiece = {} as iPiece;
-  paused: boolean = false;
   menuOn: boolean = false;
-  gameStarted: boolean = false;
+  gameBoard = this.game.board;
 
   controls: {[key: string]: Move } = {
     "ArrowUp": Move.rotateClockwise,
@@ -38,7 +37,9 @@ export class TetrisGameComponent implements AfterContentInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.code in this.controls) {
-      this.game.move(this.controls[event.code])
+      this.game.move(this.controls[event.code]);
+      this.gameBoard = this.game.getGameBoard();
+
       if (this.ctx) { 
         this.drawService.drawGame(this.game, this.ctx, this.blocksize)
       }
@@ -91,6 +92,7 @@ export class TetrisGameComponent implements AfterContentInit {
       this.time.prev = now;
       this.game.advanceGame();
       this.updateGameInfo();
+      this.gameBoard = this.game.getGameBoard();
       if (this.ctx) {
         this.drawService.drawGame(this.game, this.ctx, this.blocksize)
       }
@@ -128,4 +130,7 @@ export class TetrisGameComponent implements AfterContentInit {
     this.game.beginGame();
     this.menuOn = false;
   }
+
+
+
 }

@@ -185,7 +185,12 @@ export class GameService {
 
   updateShadowPiece() {
     this.shadowPiece = {...this.piece, color: COLORS[7]};
+    let shape = this.shadowPiece.shape.map(row => {
+      return row.map(val => val > 0 ? 8 : 0);
+    });
+    this.shadowPiece.shape = shape;
     this.shadowPiece = this.drop(this.shadowPiece);
+    console.log(this.shadowPiece)
   }
 
   advanceGame() {
@@ -229,4 +234,23 @@ export class GameService {
     return this.state === State.running;
   }
 
+  addPieceToBoard(piece: iPiece, board: number[][]) {
+    const b = JSON.parse(JSON.stringify(board));
+    piece.shape.forEach((row, dy) => {
+      row.forEach((val, dx) => {
+        const x: number = piece.x + dx;
+        const y: number = piece.y + dy;
+        if (this.posWithinBoard(x, y) && val > 0) {
+          b[y][x] = val;
+        }
+      });
+    });
+    return b
+  }
+
+  getGameBoard() {
+    let gb = this.addPieceToBoard(this.shadowPiece, this.board);
+    gb = this.addPieceToBoard(this.piece, gb)
+    return gb;
+  }
 }

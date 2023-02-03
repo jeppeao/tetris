@@ -1,11 +1,16 @@
 <div class="game-container">
-
   <div id="canvas-wrapper">
     <app-game-over *ngIf="game.state === 'gameover'"
      id="game-over"
      [score] = "score"
     ></app-game-over>
-    <canvas #board id="game-canvas"></canvas>
+    <canvas hidden="true" #board ></canvas>
+    <app-board-canvas 
+      id="game-canvas"
+      [drawBackground]="true"
+      [board]="gameBoard"
+      [blockSize]="blocksize"
+    ></app-board-canvas>
     <div *ngIf="menuOn === true && game.isRunning() === false" id='main-menu'>
       <app-highscore
         [onResize]="calculateBlocksize.bind(this)"
@@ -14,6 +19,7 @@
   </div>
 
   <app-sidebar #sidebar
+    [nextPiece]= "game.nextPiece"
     [blocksize]= "blocksize"
     id = "game-sidebar"
     [style.width] = "getNextCanvasWidth()"
