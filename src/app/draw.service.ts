@@ -7,7 +7,6 @@ import { iPiece, iColor, COLORS} from './constants';
 })
 export class DrawService {
 
-
   constructor(private game: GameService) { }
 
   clear(ctx: CanvasRenderingContext2D) {
@@ -59,13 +58,6 @@ export class DrawService {
         }
       });
     });
-  }
-
-  drawGame(game: GameService, ctx: CanvasRenderingContext2D, blocksize: number) {
-    this.clear(ctx);
-    this.drawBoard(game.board, blocksize, ctx);
-    this.drawPiece(game.shadowPiece, blocksize, ctx);
-    this.drawPiece(game.piece, blocksize, ctx);
   }
 
   drawPiece(p: iPiece, blockSize: number, ctx: CanvasRenderingContext2D) {
