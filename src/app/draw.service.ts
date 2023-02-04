@@ -2,6 +2,96 @@ import { Injectable } from '@angular/core';
 import { GameService } from './game.service';
 import { iPiece, iColor, COLORS} from './constants';
 
+const BLOCK_LETTERS: {[key: string]: number[][]} = {
+  T: [
+    [1, 1, 1, 1, 1],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0]
+  ],
+  
+  E: [
+    [3, 3, 3, 3],
+    [3, 0, 0, 0],
+    [3, 3, 3, 3],
+    [3, 0, 0, 0],
+    [3, 3, 3, 3]
+  ],
+  
+  R: [
+    [2, 2, 2, 0],
+    [2, 0, 0, 2],
+    [2, 2, 2, 0],
+    [2, 0, 0, 2],
+    [2, 0, 0, 2]
+  ],
+  
+  I: [
+   [4, 4, 4],
+   [0, 4, 0],
+   [0, 4, 0],
+   [0, 4, 0],
+   [4, 4, 4]
+  ],
+  
+  S: [
+    [5, 5 ,5, 5],
+    [5, 0, 0, 0],
+    [5, 5 ,5, 5],
+    [0, 0, 0, 5],
+    [5, 5 ,5, 5],
+   ],
+  
+  T2: [
+    [6, 6, 6, 6, 6],
+    [0, 0, 6, 0, 0],
+    [0, 0, 6, 0, 0],
+    [0, 0, 6, 0, 0],
+    [0, 0, 6, 0, 0]
+  ],
+  
+  H: [
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1]
+  ],
+  
+  G: [
+    [3, 3, 3, 3, 0],
+    [3, 0, 0, 0, 0],
+    [3, 0, 3, 3, 3],
+    [3, 0, 0, 0, 3],
+    [3, 3, 3, 3, 3]
+  ],
+  
+  O: [
+    [0, 6, 6, 6, 0],
+    [6, 0, 0, 0, 6],
+    [6, 0, 0, 0, 6],
+    [6, 0, 0, 0, 6],
+    [0, 6, 6, 6, 0]
+  ],
+  
+  C: [
+    [0, 4, 4, 4, 0],
+    [4, 0, 0, 0, 4],
+    [4, 0, 0, 0, 0],
+    [4, 0, 0, 0, 4],
+    [0, 4, 4, 4, 0]
+  ],
+  
+  GAP: [
+    [0],
+    [0],
+    [0],
+    [0],
+    [0]
+  ]
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -91,6 +181,18 @@ export class DrawService {
   modulate(c: iColor, f: number): iColor {
     return {r: c.r * f, g: c.g * f, b: c.b * f};
   }
-
-
+  
+  wordToBoard(w: string) {
+    const b: number[][] = [];
+    const g = BLOCK_LETTERS['GAP'];
+    for (let ltr of w) {
+      const larr = BLOCK_LETTERS[ltr];
+      for (let j=0; j<larr[0].length; j++) {
+        b.push([]);
+        for (let i=0; i<larr.length; i++) {
+          b[j] = b[j].concat(larr[i][j]);
+        }
+      } 
+    }
+  }
 }
