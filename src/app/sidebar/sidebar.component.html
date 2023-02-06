@@ -16,7 +16,7 @@
     <div id="canvas-wrapper">
       <app-board-canvas
         [blockSize]="blocksize"
-        [board]="game.nextPiece.shape"
+        [board]="processNext(game.nextPiece.shape)"
         [drawBackground]="false"
       ></app-board-canvas>
     </div>

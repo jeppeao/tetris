@@ -71,12 +71,9 @@
   box-shadow: none;
   transform: translateY(0.10em);
 }
+
 .menu-button:active {
   border: 0.3vh solid lightblue;
-}
-
-#canvas-wrapper {
-  height: 60px;
 }
 
 #score {
@@ -84,6 +81,4 @@
   font-size: 2em;
 }
 
-app-board-canvas{
-  width: 200px;
-}
+

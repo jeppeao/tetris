@@ -1,6 +1,5 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SimpleChanges, OnChanges } from '@angular/core';
-import { DrawService } from '../draw.service';
 import { GameService } from '../game.service';
 import { iPiece } from '../constants';
 
@@ -16,4 +15,8 @@ export class SidebarComponent {
   @Input() onNewGameClick: () => void = () => {};
 
   constructor(public game: GameService) {}
+
+  processNext(next: number[][]): number[][] {
+    return next.slice(0, 2);
+  }
 }
