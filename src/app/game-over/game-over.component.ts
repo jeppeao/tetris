@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { HighscoreService } from '../highscore.service';
+
 @Component({
   selector: 'app-game-over',
   templateUrl: './game-over.component.html',

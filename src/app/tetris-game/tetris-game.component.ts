@@ -34,6 +34,11 @@ export class TetrisGameComponent implements AfterContentInit {
       this.gameBoard = this.game.getGameBoard();
     }
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResizeEvent(event: Event) {
+    this.calculateBlocksize();
+  }
   constructor(private drawService: DrawService, public game: GameService) {}
 
   ngAfterContentInit(): void {
@@ -64,7 +69,6 @@ export class TetrisGameComponent implements AfterContentInit {
     if(now  - this.time.prev > t && this.game.state === 'running') {
       this.time.prev = now;
       this.game.advanceGame();
-      this.calculateBlocksize();
       this.gameBoard = this.game.getGameBoard();
     }
     this.requestID = window.requestAnimationFrame(this.loop.bind(this));
@@ -89,5 +93,4 @@ export class TetrisGameComponent implements AfterContentInit {
     this.game.beginGame();
     this.menuOn = false;
   }
-
 }

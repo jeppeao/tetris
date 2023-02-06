@@ -22,7 +22,6 @@ export class BoardCanvasComponent implements AfterContentInit, OnChanges {
   @ViewChild('canvas', {static: true}) canvas: ElementRef = {} as ElementRef;
   ctx: CanvasRenderingContext2D = {} as CanvasRenderingContext2D;
 
-
   constructor(private draw: DrawService) {}
 
   ngAfterContentInit(): void {

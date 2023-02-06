@@ -1,6 +1,5 @@
 <div class="game-container">
   <div id="canvas-wrapper">
-
     <app-game-over *ngIf="game.state === 'gameover'"
      id="game-over"
      [score] = "game.score"
@@ -28,6 +27,5 @@
     [onNewGameClick]="newGame.bind(this)"
     [onStartGameClick]="onStartGameClick.bind(this)"
   ></app-sidebar>
-
 </div>
 
