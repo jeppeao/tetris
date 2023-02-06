@@ -1,9 +1,8 @@
 <div id="main-menu" #mainMenu>
-  <!-- <canvas #titleBoard class="title-canvas"></canvas> -->
   <app-board-canvas 
     class="title-canvas"
     [drawBackground]="false"
-    [board]="constructTitleBoard()"
+    [board]="titleBoard"
     [blockSize]="blockSize"
   ></app-board-canvas>
   <div class="hiscore-list">

@@ -183,16 +183,19 @@ export class DrawService {
   }
   
   wordToBoard(w: string) {
-    const b: number[][] = [];
     const g = BLOCK_LETTERS['GAP'];
-    for (let ltr of w) {
-      const larr = BLOCK_LETTERS[ltr];
-      for (let j=0; j<larr[0].length; j++) {
-        b.push([]);
-        for (let i=0; i<larr.length; i++) {
-          b[j] = b[j].concat(larr[i][j]);
-        }
-      } 
-    }
+    const h = g.length;
+    const b: number[][] = Array(h).fill(null).map(() => Array());
+    const warr = w.split('').map(ltr => [ltr, 'GAP']).flat();
+    warr.pop() // remove last gap
+
+    for (let ltr of warr) {
+      const blarr = BLOCK_LETTERS[ltr];
+      for (let i=0; i<h; i++) {
+        b[i] = b[i].concat(blarr[i]);
+      }
+    } 
+    return b;    
   }
+  
 }

@@ -190,7 +190,6 @@ export class GameService {
     });
     this.shadowPiece.shape = shape;
     this.shadowPiece = this.drop(this.shadowPiece);
-    console.log(this.shadowPiece)
   }
 
   advanceGame() {

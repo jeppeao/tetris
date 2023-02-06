@@ -10,7 +10,6 @@ import { iPiece } from '../constants';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  @Input() nextPiece: iPiece = this.game.nextPiece;
   @Input() blocksize: number = 0;
   @Input() onStartGameClick: () => void = () => {};
   @Input() onHighscoreClick: () => void = () => {};
