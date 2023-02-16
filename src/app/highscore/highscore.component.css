@@ -20,7 +20,7 @@ h1 {
 }
 
 .hiscore-list {
-  margin-top: 4%;
+  margin-top: 2%;
   margin-left: 50%;
   margin-bottom: 4%;
   transform: translate(-50%);
@@ -41,7 +41,9 @@ h1 {
 }
 
 .hiscore-labels{
-  margin-bottom: 0.2em;
+  margin-top: 4%;
+  margin-left: 50%;
+  transform: translate(-50%);
 }
 
 .label {

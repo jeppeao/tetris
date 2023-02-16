@@ -5,12 +5,12 @@
     [board]="titleBoard"
     [blockSize]="blockSize"
   ></app-board-canvas>
+  <div class="hiscore-item hiscore-labels">
+    <span class="label">RANK</span>
+    <span class="label">PLAYER</span>
+    <span class="label">SCORE</span>
+  </div>
   <div class="hiscore-list">
-    <div class="hiscore-item hiscore-labels">
-      <span class="label">RANK</span>
-      <span class="label">PLAYER</span>
-      <span class="label">SCORE</span>
-    </div>
     <div *ngFor="let hs of highscores; let idx = index" class="hiscore-item">
       <span class="hiscore-text">{{ idx + 1 }}.</span>
       <span class="hiscore-text">{{ hs.player }}</span>
