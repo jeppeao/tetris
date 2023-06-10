@@ -29,7 +29,8 @@ h1 {
   align-items: center;
   width: 100%;
   flex-grow: 1;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 4px;
 }
 
 .hiscore-item {
